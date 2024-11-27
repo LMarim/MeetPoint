@@ -24,7 +24,7 @@ export default function Primeira() {
           <Text style={styles.formTitle}>LOGAR NO MEETPOINT</Text>
           <View style={styles.inputContainer}>
             <TextInput
-              placeholder="email@email.com"
+              placeholder="insira o email"
               placeholderTextColor="#999"
               style={styles.input}
             />
@@ -32,7 +32,7 @@ export default function Primeira() {
           </View>
           <View style={styles.inputContainer}>
             <TextInput
-              placeholder="Password"
+              placeholder="Insira a senha"
               placeholderTextColor="#999"
               secureTextEntry
               style={styles.input}
@@ -69,7 +69,7 @@ export default function Primeira() {
           </View>
           <View style={styles.inputContainer}>
             <TextInput
-              placeholder="email@email.com"
+              placeholder="insira o email"
               placeholderTextColor="#999"
               style={styles.input}
             />
@@ -77,7 +77,7 @@ export default function Primeira() {
           </View>
           <View style={styles.inputContainer}>
             <TextInput
-              placeholder="Senha"
+              placeholder="insira a senha"
               placeholderTextColor="#999"
               secureTextEntry
               style={styles.input}

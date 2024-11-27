@@ -81,11 +81,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   tabText: {
-    color: '#ccc',
+    color: '#fff3ef',
     fontSize: 16,
   },
   activeTab: {
-    backgroundColor: '#D3D3D3',
+    backgroundColor: '#433c3b',
     borderRadius: 10,
   },
   activeTabText: {
