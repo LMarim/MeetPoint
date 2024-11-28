@@ -5,9 +5,11 @@ import Lgrupos from './telas/Lgrupos';
 import Lcontatos from './telas/Lcontatos';
 import Conta from './telas/conta';
 import UserProfile from './telas/UserProfile';
+import Solicitacoes from './telas/solicitacoes';
+import AddContatos from './telas/addContatos';
 
 export default function App() {
 return(
-    <UserProfile />
+    <AddContatos />
 );
-}
+} 
