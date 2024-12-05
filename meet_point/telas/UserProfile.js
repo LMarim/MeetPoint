@@ -1,23 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons'; // Install with `npm install react-native-vector-icons`
+import * as ImagePicker from 'expo-image-picker';
+import Icon from 'react-native-vector-icons/MaterialIcons'; 
 
 const UserProfile = () => {
+
+  const [image, setImage] = useState('https://e7.pngegg.com/pngimages/722/101/png-clipart-computer-icons-user-profile-circle-abstract-miscellaneous-rim.png')
+
+  const handleImagePicker = async () => {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      aspect: [4,4],
+      allowsEditing: true,
+      base64: true,
+      quality:1,
+    });
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri)
+    }
+
+  };
+
   return (
     <View style={styles.container}>
     
       <View style={styles.header}>
-        <TouchableOpacity>
-          <Icon name="arrow-back" size={28} color="#FFFF" />
-        </TouchableOpacity>
         <Text style={styles.headerTitle}>Perfil do Usuário</Text>
       </View>
 
       
       <View style={styles.profileContainer}>
         <View style={styles.profileImageContainer}>
-          <Icon name="account-circle" size={100} color="#4a4a4a" />
+          <Image source={{ uri: image }} style={styles.profileImage} />
+
+          <TouchableOpacity style={styles.perfilImage} onPress={handleImagePicker}>
+            <Text style={styles.textPerfilImage}>Foto de perfil</Text>
+          </TouchableOpacity>
         </View>
+
+
         <View style={styles.profileInfo}>
           <Text style={styles.userId}>UID de usuario</Text>
           <View style={styles.editRow}>
@@ -76,6 +97,26 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     color: '#FFFF',
   },
+  perfilImage:{
+    flex: 1,
+    alignItems: 'center',
+    right:3,
+    gap: 5,
+    backgroundColor: '#4E4039',
+    borderRadius: 8,
+    marginTop:4,
+    padding: 5,
+  },
+  profileImage:{
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+  },
+  textPerfilImage:{
+    fontSize: 15,
+    color: '#ffff',
+    fontWeight: 'bold',
+  },
   profileContainer: {
     flex: 1,
     alignItems: 'center',
@@ -101,6 +142,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#4a4a4a',
     marginTop: 20,
+    fontWeight: 'bold',
   },
   input: {
     borderBottomWidth: 1,
