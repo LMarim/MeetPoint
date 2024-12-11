@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons'; 
+import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from '@react-navigation/native';
 
 const Solicitacoes = () => {
+
+  const navigation = useNavigation();
+
   const [contatos, setContatos] = useState([
     { id: '1', nome: 'contato 1', checked: false },
     { id: '2', nome: 'contato 2', checked: false },
@@ -10,7 +15,7 @@ const Solicitacoes = () => {
     { id: '4', nome: 'contato 4', checked: false },
   ]);
 
-  const [activeTab, setActiveTab] = useState('Grupos');
+  const [activeTab, setActiveTab] = useState('Solicitações');
 
   const renderTab = (tabName) => (
     <TouchableOpacity
@@ -18,7 +23,12 @@ const Solicitacoes = () => {
         styles.tab,
         activeTab === tabName && styles.activeTab,
       ]}
-      onPress={() => setActiveTab(tabName)}
+      onPress={() => {
+        setActiveTab(tabName);
+        if (tabName === 'Grupos') navigation.navigate('Lgrupos');
+        if (tabName === 'Contatos') navigation.navigate('Lcontatos');
+        if (tabName === 'Solicitações') navigation.navigate('Solicitacoes'); // Rota com nome ajustado
+      }}
     >
       <Text style={[styles.tabText, activeTab === tabName && styles.activeTabText]}>
         {tabName}
@@ -64,10 +74,14 @@ const Solicitacoes = () => {
         <Text style={styles.buttonText}>Aceitar</Text>
       </TouchableOpacity>
 
-      <View style={styles.bottomNavigation}>
-        <Icon name="home" size={28} color="#000" />
-        <Icon name="group" size={28} color="#000" />
-        <Icon name="person" size={28} color="#000" />
+    {/* Barra de navegação inferior */}
+    <View style={styles.bottomNav}>
+        <TouchableOpacity onPress={() => navigation.navigate("Lgrupos")}>
+          <Ionicons name="people-outline" size={30} color="#4E342E" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("conta")}>
+          <Ionicons name="person" size={30} color="#4E342E" />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -76,7 +90,7 @@ const Solicitacoes = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFBEC',
+    backgroundColor: '#FFF9E5',
   },
   header: {
     flexDirection: 'row',
@@ -143,13 +157,12 @@ const styles = StyleSheet.create({
         fontSize: 16, 
         fontWeight: 'bold', 
     }, 
-    bottomNavigation: { flexDirection: 'row', 
-        justifyContent: 'space-around', 
-        backgroundColor: '#FFF9E5', 
-        paddingVertical: 10, 
-        borderTopWidth: 1, 
-        borderColor: '#e0e0e0', 
-    }, 
+    bottomNav: {
+      flexDirection: "row",
+      justifyContent: "space-around",
+      backgroundColor: "#D7CCC8",
+      paddingVertical: 10,
+    },
 });
 
 export default Solicitacoes;

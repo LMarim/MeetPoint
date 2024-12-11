@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons'; 
+import { Ionicons } from "@expo/vector-icons";
 
 const groupsData = [
   { id: '1', name: 'Nome do grupo', destination: 'Destino da viagem' },
   { id: '2', name: 'Nome do grupo 2', destination: 'Destino da viagem' },
 ];
 
-const Lgrupos = () => {
+const Lgrupos = ({ navigation }) => {
   const [activeTab, setActiveTab] = useState('Grupos');
 
   const renderTab = (tabName) => (
@@ -16,7 +16,12 @@ const Lgrupos = () => {
         styles.tab,
         activeTab === tabName && styles.activeTab,
       ]}
-      onPress={() => setActiveTab(tabName)}
+      onPress={() => {
+        setActiveTab(tabName);
+        if (tabName === 'Grupos') navigation.navigate('Lgrupos');
+        if (tabName === 'Contatos') navigation.navigate('Lcontatos');
+        if (tabName === 'Solicitações') navigation.navigate('solicitacoes');
+      }}
     >
       <Text style={[styles.tabText, activeTab === tabName && styles.activeTabText]}>
         {tabName}
@@ -49,15 +54,21 @@ const Lgrupos = () => {
       />
 
       {/* Floating Action Button */}
-      <TouchableOpacity style={styles.fab}>
-        <Icon name="add" size={30} color="#fff" />
+      <TouchableOpacity
+        style={styles.fab}
+        onPress={() => navigation.navigate('AddGrupos')} // Navega para a tela de adicionar grupos
+      >
+        <Ionicons name="add" size={30} color="#fff" />
       </TouchableOpacity>
 
-      {/* Bottom Navigation */}
-      <View style={styles.bottomNavigation}>
-        <Icon name="home" size={28} color="#000" />
-        <Icon name="group" size={28} color="#000" />
-        <Icon name="person" size={28} color="#000" />
+      {/* Barra de navegação inferior */}
+      <View style={styles.bottomNav}>
+        <TouchableOpacity onPress={() => navigation.navigate("Lgrupos")}>
+          <Ionicons name="people-outline" size={30} color="#4E342E" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("conta")}>
+          <Ionicons name="person" size={30} color="#4E342E" />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -133,13 +144,11 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
-  bottomNavigation: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    backgroundColor: '#FFF9E5',
+  bottomNav: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    backgroundColor: "#D7CCC8",
     paddingVertical: 10,
-    borderTopWidth: 1,
-    borderColor: '#e0e0e0',
   },
 });
 

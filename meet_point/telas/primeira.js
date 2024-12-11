@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
 
-export default function Primeira() {
+export default function Primeira({ navigation }) {
   const [showLoginForm, setShowLoginForm] = useState(false); // Estado para controlar o formulário de login
   const [showSignupForm, setShowSignupForm] = useState(false); // Estado para controlar o formulário de cadastro
 
@@ -47,9 +47,9 @@ export default function Primeira() {
 
           {/* Botões de Login e Cadastro no formulário */}
           <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.loginButton}  onPress={() => navigation.navigate('NavegacaoPrincipal')}>
-              <Text style={styles.buttonText}>Login</Text>
-            </TouchableOpacity>
+          <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('Lgrupos')}>
+            <Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
             <Text style={styles.orText}>ou</Text>
             <TouchableOpacity style={styles.signupButton} onPress={() => { setShowLoginForm(false); setShowSignupForm(true); }}>
               <Text style={styles.buttonText}>Cadastro</Text>
@@ -125,7 +125,7 @@ export default function Primeira() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#faedac', // Fundo escuro
+    backgroundColor: '#FFF9E5', // Fundo escuro
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   welcomeContainer: {
-    backgroundColor: '#fcf7bd', // Fundo amarelo claro
+    backgroundColor: '#FFF9E5',
     padding: 20,
     borderRadius: 10,
     width: '90%',
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   formContainer: {
-    backgroundColor: '#fef9c3', // Fundo amarelo claro
+    backgroundColor: '#FFF9E5', // Fundo amarelo claro
     padding: 20,
     borderRadius: 10,
     width: '90%',
