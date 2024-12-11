@@ -1,8 +1,11 @@
 import React from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
-import { Ionicons } from "@expo/vector-icons"; // Biblioteca de ícones
+import { Ionicons } from "@expo/vector-icons"; 
+import { useNavigation } from '@react-navigation/native';
 
 export default function AddGrupos() {
+  const navigation = useNavigation(); // Move para dentro do componente
+
   return (
     <View style={styles.container}>
       {/* Formulário */}
@@ -34,20 +37,20 @@ export default function AddGrupos() {
       </ScrollView>
 
       {/* Botão de confirmação */}
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate("Lgrupos")} // Certifique-se de que "Lgrupos" está registrado no Navigator
+      >
         <Ionicons name="checkmark" size={24} color="#fff" />
       </TouchableOpacity>
 
       {/* Barra de navegação inferior */}
       <View style={styles.bottomNav}>
-        <TouchableOpacity>
-          <Ionicons name="home-outline" size={30} color="#4E342E" />
-        </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Lgrupos")}>
           <Ionicons name="people-outline" size={30} color="#4E342E" />
         </TouchableOpacity>
-        <TouchableOpacity>
-          <Ionicons name="menu-outline" size={30} color="#4E342E" />
+        <TouchableOpacity onPress={() => navigation.navigate("conta")}>
+          <Ionicons name="person" size={30} color="#4E342E" />
         </TouchableOpacity>
       </View>
     </View>
@@ -57,7 +60,7 @@ export default function AddGrupos() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFF8E1",
+    backgroundColor:'#FFF9E5',
     justifyContent: "space-between",
   },
   form: {

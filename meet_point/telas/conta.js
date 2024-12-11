@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { Ionicons } from '@expo/vector-icons';
 
-const Conta = () => {
+const Conta = ({ navigation }) => {
   return (
     <View style={styles.container}>
       
@@ -10,37 +11,33 @@ const Conta = () => {
         <Text style={styles.username}>Nome de Usuário</Text>
       </View>
       
-      
       <ScrollView style={styles.content}>
-        <TouchableOpacity style={styles.menuItem}>
+        <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('UseProfile')}>
           <Icon name="user" size={20} color="#4E4039" style={styles.icon} />
           <Text style={styles.menuText}>Perfil do usuário</Text>
           <Icon name="chevron-right" size={20} color="#4E4039" />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.menuItem}>
+        <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('Config')}>
           <Icon name="cog" size={20} color="#4E4039" style={styles.icon} />
           <Text style={styles.menuText}>Configurações</Text>
           <Icon name="chevron-right" size={20} color="#4E4039" />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.menuItem}>
+        <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('primeira')}>
           <Icon name="sign-out" size={20} color="#4E4039" style={styles.icon} />
           <Text style={styles.menuText}>Desconectar</Text>
           <Icon name="chevron-right" size={20} color="#4E4039" />
         </TouchableOpacity>
       </ScrollView>
 
-      
+      {/* Barra de navegação inferior */}
       <View style={styles.bottomNav}>
-        <TouchableOpacity style={styles.navItem}>
-          <Icon name="home" size={25} color="#4E4039" />
+        <TouchableOpacity onPress={() => navigation.navigate('Lgrupos')}>
+          <Ionicons name="people-outline" size={30} color="#4E342E" />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
-          <Icon name="users" size={25} color="#4E4039" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
-          <Icon name="user" size={25} color="#4E4039" />
+        <TouchableOpacity onPress={() => navigation.navigate('Conta')}>
+          <Ionicons name="person" size={30} color="#4E342E" />
         </TouchableOpacity>
       </View>
     </View>
@@ -50,10 +47,10 @@ const Conta = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8F2C2', 
+    backgroundColor: '#FFF9E5', 
   },
   header: {
-    backgroundColor: '#4E4039',
+    backgroundColor: '#333',
     paddingVertical: 20,
     paddingHorizontal: 15,
     borderBottomLeftRadius: 20,
@@ -70,7 +67,7 @@ const styles = StyleSheet.create({
   menuItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#F8F2C2',
+    backgroundColor: '#FFF9E5',
     padding: 15,
     marginBottom: 10,
     borderRadius: 10,
@@ -90,9 +87,9 @@ const styles = StyleSheet.create({
     marginRight: 15,
   },
   bottomNav: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    backgroundColor: '#4E4039',
+    flexDirection: "row",
+    justifyContent: "space-around",
+    backgroundColor: "#D7CCC8",
     paddingVertical: 10,
   },
   navItem: {
