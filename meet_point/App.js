@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { View } from 'react-native';
 import Primeira from './telas/primeira';
 import Lgrupos from './telas/Lgrupos';
 import Lcontatos from './telas/Lcontatos';
@@ -10,6 +9,7 @@ import UserProfile from './telas/UserProfile';
 import Solicitacoes from './telas/solicitacoes';
 import AddContatos from './telas/addContatos';
 import AddGrupos from './telas/addGrupo';
+import Mapas from './telas/mapas';
 
 const Stack = createStackNavigator();
 
@@ -65,6 +65,14 @@ export default function App() {
             component={UserProfile}
             options={{ headerShown: false }}
           />
+
+          <Stack.Screen
+            name="Mapas"
+            component={Mapas}
+            options={{ headerShown: false }}
+          />
+
+          
         </Stack.Navigator>
       </NavigationContainer>
     );

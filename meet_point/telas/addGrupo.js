@@ -1,58 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
-import { Ionicons } from "@expo/vector-icons"; 
+import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from '@react-navigation/native';
 
 export default function AddGrupos() {
-  const navigation = useNavigation(); // Move para dentro do componente
+  const navigation = useNavigation();
+  const [groupName, setGroupName] = useState(""); // Estado para o nome do grupo
+  const [groupLocation, setGroupLocation] = useState(""); // Estado para a localização
+  const [groupMember, setGroupMember] = useState(""); // Estado para o nome de um membro
+
+  const handleAddGroup = () => {
+    if (groupName.trim()) {
+      navigation.navigate("Lgrupos", { newGroup: { name: groupName, destination: groupLocation } });
+    }
+  };
 
   return (
     <View style={styles.container}>
-      {/* Formulário */}
       <ScrollView contentContainerStyle={styles.form}>
         <Text style={styles.label}>Nomeie o grupo</Text>
-        <TextInput style={styles.input} placeholder="Digite o nome do grupo" placeholderTextColor="#6D4C41" />
+        <TextInput
+          style={styles.input}
+          placeholder="Digite o nome do grupo"
+          placeholderTextColor="#6D4C41"
+          value={groupName}
+          onChangeText={setGroupName}
+        />
 
         <Text style={styles.label}>Localização do encontro</Text>
-        <TextInput style={styles.input} placeholder="Digite a localização" placeholderTextColor="#6D4C41" />
+        <TextInput
+          style={styles.input}
+          placeholder="Digite a localização"
+          placeholderTextColor="#6D4C41"
+          value={groupLocation}
+          onChangeText={setGroupLocation}
+        />
 
         <Text style={styles.label}>Membros</Text>
-        <TextInput style={styles.input} placeholder="Digite o nome do membro" placeholderTextColor="#6D4C41" />
-
-        {/* Lista de membros */}
-        <View style={styles.membersContainer}>
-          <View style={styles.member}>
-            <Ionicons name="person-circle-outline" size={40} color="#4E342E" />
-            <Text style={styles.memberText}>membro 1</Text>
-          </View>
-          <View style={styles.member}>
-            <Ionicons name="person-circle-outline" size={40} color="#4E342E" />
-            <Text style={styles.memberText}>membro 2</Text>
-          </View>
-          <View style={styles.member}>
-            <Ionicons name="person-circle-outline" size={40} color="#4E342E" />
-            <Text style={styles.memberText}>membro 3</Text>
-          </View>
-        </View>
+        <TextInput
+          style={styles.input}
+          placeholder="Digite o nome do membro"
+          placeholderTextColor="#6D4C41"
+          value={groupMember}
+          onChangeText={setGroupMember}
+        />
       </ScrollView>
 
-      {/* Botão de confirmação */}
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate("Lgrupos")} // Certifique-se de que "Lgrupos" está registrado no Navigator
-      >
+      <TouchableOpacity style={styles.button} onPress={handleAddGroup}>
         <Ionicons name="checkmark" size={24} color="#fff" />
       </TouchableOpacity>
-
-      {/* Barra de navegação inferior */}
-      <View style={styles.bottomNav}>
-        <TouchableOpacity onPress={() => navigation.navigate("Lgrupos")}>
-          <Ionicons name="people-outline" size={30} color="#4E342E" />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("conta")}>
-          <Ionicons name="person" size={30} color="#4E342E" />
-        </TouchableOpacity>
-      </View>
     </View>
   );
 }
@@ -60,7 +56,7 @@ export default function AddGrupos() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:'#FFF9E5',
+    backgroundColor: '#FFF9E5',
     justifyContent: "space-between",
   },
   form: {
@@ -82,16 +78,32 @@ const styles = StyleSheet.create({
   },
   membersContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    flexWrap: "wrap",
+    justifyContent: "flex-start",
     marginTop: 10,
   },
   member: {
-    alignItems: "center",
+    backgroundColor: "#D7CCC8",
+    borderRadius: 8,
+    padding: 10,
+    marginRight: 10,
+    marginBottom: 10,
   },
   memberText: {
-    marginTop: 5,
-    fontSize: 12,
+    fontSize: 14,
     color: "#4E342E",
+  },
+  addButton: {
+    backgroundColor: "#4E342E",
+    borderRadius: 50,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginTop: 20,
+    alignItems: "center",
+  },
+  addButtonText: {
+    color: "#fff",
+    fontSize: 16,
   },
   button: {
     backgroundColor: "#4E342E",

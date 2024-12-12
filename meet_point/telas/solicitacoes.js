@@ -77,7 +77,7 @@ const Solicitacoes = () => {
     {/* Barra de navegação inferior */}
     <View style={styles.bottomNav}>
         <TouchableOpacity onPress={() => navigation.navigate("Lgrupos")}>
-          <Ionicons name="people-outline" size={30} color="#4E342E" />
+          <Ionicons name="home" size={30} color="#4E342E" />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate("conta")}>
           <Ionicons name="person" size={30} color="#4E342E" />
